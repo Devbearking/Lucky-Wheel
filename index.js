@@ -58,16 +58,12 @@ stage.addChild(glow)
 
 // Create the spin button
 const spinButton = new createjs.Bitmap("src/SpinButton.png");
-spinButton.x = 660;
-spinButton.y = 270;
+spinButton.x = 663;
+spinButton.y = 268;
 spinButton.scaleX = 0.27;
 spinButton.scaleY = 0.27;
 spinButton.cursor = "pointer";
 stage.addChild(spinButton);
-
-
-
-let previousPosition = 0;
 
 function wheelSpin() {
 
@@ -75,11 +71,11 @@ function wheelSpin() {
 
   // Randomly select a section
   const randomIndex = Math.floor(Math.random() * numSections);
-  var targetRotation = 360 * 5 - (randomIndex * sectionAngle + sectionAngle / 2);
+  var targetRotation = 360 * 6 - (randomIndex * sectionAngle + sectionAngle / 2);
 
   // Animate the wheel rotation
   TweenMax.to(wheelContainer, {
-    rotation: targetRotation + previousPosition,
+    rotation: targetRotation,
     duration: 5,
     ease: "power1.inOut",
     onComplete: () => {
@@ -99,9 +95,16 @@ function wheelSpin() {
                       if (selectedPrice === "+1 Spin") {
                         alert(`Congratulations! You won ${selectedPrice}!`);
                         spinButton.mouseEnabled = true;
-                        previousPosition = wheelContainer.rotation;
+                        TweenMax.to(wheelContainer,{
+                          rotation: 0,
+                          duration: 2,
+                          ease: "power1.inOut",
+                        })
                       } else {
-                        alert(`Congratulations! You won $${selectedPrice}!`);
+                        alert(`Congratulations! You won $${selectedPrice}!`);   
+                        TweenMax.to(spinButton,{
+                          alpha: .8,
+                        })          
                       }
                     }
                   });
