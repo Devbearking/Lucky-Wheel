@@ -101,10 +101,7 @@ function wheelSpin() {
                           ease: "power1.inOut",
                         })
                       } else {
-                        alert(`Congratulations! You won $${selectedPrice}!`);   
-                        TweenMax.to(spinButton,{
-                          alpha: .8,
-                        })          
+                        alert(`Congratulations! You won $${selectedPrice}!`);          
                       }
                     }
                   });
