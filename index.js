@@ -79,7 +79,7 @@ function wheelSpin() {
 
   // Animate the wheel rotation
   TweenMax.to(wheelContainer, {
-    rotation: targetRotation + previousPosition, 
+    rotation: targetRotation + previousPosition,
     duration: 5,
     ease: "power1.inOut",
     onComplete: () => {
@@ -89,20 +89,22 @@ function wheelSpin() {
           TweenMax.to(glow, .5, {
             alpha: 0,
             onComplete: () => {
-              TweenMax.to(glow, .5, {
+              TweenMax.to(glow, .3, {
                 alpha: 1,
                 onComplete: () => {
-                  TweenMax.to(glow, .5, {
+                  TweenMax.to(glow, .3, {
                     alpha: 0,
+                    onComplete: () => {
+                      const selectedPrice = sectionPrices[randomIndex];
+                      if (selectedPrice === "+1 Spin") {
+                        alert(`Congratulations! You won ${selectedPrice}!`);
+                        spinButton.mouseEnabled = true;
+                        previousPosition = wheelContainer.rotation;
+                      } else {
+                        alert(`Congratulations! You won $${selectedPrice}!`);
+                      }
+                    }
                   });
-                  const selectedPrice = sectionPrices[randomIndex];
-                  if (selectedPrice === "+1 Spin") {
-                    alert(`Congratulations! You won ${selectedPrice}!`);
-                    spinButton.mouseEnabled = true;
-                    previousPosition = wheelContainer.rotation;
-                  } else {
-                    alert(`Congratulations! You won $${selectedPrice}!`);
-                  }
                 }
               });
             }
