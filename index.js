@@ -83,10 +83,10 @@ function wheelSpin() {
     duration: 5,
     ease: "power1.inOut",
     onComplete: () => {
-      TweenMax.to(glow, .5, {
+      TweenMax.to(glow, .3, {
         alpha: 1,
         onComplete: () => {
-          TweenMax.to(glow, .5, {
+          TweenMax.to(glow, .3, {
             alpha: 0,
             onComplete: () => {
               TweenMax.to(glow, .3, {
